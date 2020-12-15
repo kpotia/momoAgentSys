@@ -29,7 +29,7 @@
     // Make sure errors are empty
     if(empty($email_err) && empty($password_err)){
       // Prepare query
-      $sql = 'SELECT username, email, password, role FROM users WHERE email = :email';
+      $sql = 'SELECT id,username, email, password, role FROM users WHERE email = :email';
 
       // Prepare statement
       if($stmt = $pdo->prepare($sql)){
@@ -44,14 +44,22 @@
               
               $hashed_password = $row['password'];
               
-              // var_dump(password_get_info($hashed_password));
-              // var_dump(password_verify($password, $hashed_password)); die;
+         
               if(password_verify($password, $hashed_password)){
                 // SUCCESSFUL LOGIN
                 session_start();
+                $_SESSION['id'] = $row['id'];
                 $_SESSION['email'] = $email;
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['role'] = $row['role'];
+
+                $details = $_SESSION['username'].': login';
+                // insert into logs
+              $sql = 'INSERT INTO logs(userid,details) VALUES (:userid, :details)';
+              $sth = $pdo->prepare($sql);
+                  $sth->bindparam(':userid', $_SESSION['id']);
+                  $sth->bindparam(':details', $details);
+                  $sth->execute();
                 header('location: '.$_SESSION['role'].'/index.php');
               } else {
                 // Display wrong password message
