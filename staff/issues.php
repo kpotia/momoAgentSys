@@ -3,7 +3,7 @@
 
 <?php include_once 'static/head.php'; 
 include_once("../db.php");
-$result = $pdo->query("SELECT * FROM issue");
+$result = $pdo->query("SELECT * FROM issues");
 ?>
 
 <body class="grey lighten-3">
@@ -45,10 +45,10 @@ $result = $pdo->query("SELECT * FROM issue");
             <thead class="table-black">
               <tr>
                 <th>Date time</th>
-                <th>Type</th>
-                <th>Account</th>
-                <th>Client Number</th>
-                <th>Amount</th>
+                <th>Status</th>
+                <th>Client Name</th>
+                <th>Description</th>
+                <th>Option</th>
               </tr>
             </thead>
             <tbody>
@@ -56,10 +56,10 @@ $result = $pdo->query("SELECT * FROM issue");
                 while($row = $result->fetch(PDO::FETCH_ASSOC)) {    
                   echo "<tr>";
                   echo "<td>".$row['timetsamp']."</td>";
-                  echo "<td>".$row['type']."</td>";
-                  echo "<td>".$row['account_id']."</td>";
-                  echo "<td>".$row['client_numb']."</td>";
-                  echo "<td>".$row['amount']."</td>";
+                  echo "<td>".$row['status']."</td>";
+                  echo "<td>".$row['client_name']."</td>";
+                  echo "<td>".$row['issue_description']."</td>";
+                  echo "<td> <a href='issue.php?id=".$row['issueid']."' class='btn btn-primary'>View</a></td>";
                  ?>
               <?php } ?>
             </tbody>
