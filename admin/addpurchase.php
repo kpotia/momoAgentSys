@@ -54,9 +54,8 @@ $solde = $acc_chosen[0]['solde'] + $amount;
     $query->bindparam(':solde', $solde);
     if($query->execute()){
       header('location: purchases.php');
+      }
     }
-    }
-    
   }
 }?>
 
