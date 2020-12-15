@@ -12,12 +12,14 @@
   $accs = $sth->fetchAll();
   
 if(isset($_POST['submit'])) { 
+  $type = $_POST['type'];
   $account = $_POST['account'];
+  $client = $_POST['client'];
   $amount = $_POST['amount'];
 
 
   // checking empty fields
-  if(empty($account) ||empty($amount)) {
+  if(empty($account) ||empty($amount) || empty($type) || empty($client)) {
         
     if(empty($account)) {
       echo "<font color='red'>account field is empty.</font><br/>";
@@ -26,6 +28,14 @@ if(isset($_POST['submit'])) {
     if(empty($amount)) {
       echo "<font color='red'>amount field is empty.</font><br/>";
     }
+
+    if(empty($type)) {
+      echo "<font color='red'>type field is empty.</font><br/>";
+    }
+
+    if(empty($client)) {
+      echo "<font color='red'>client number field is empty.</font><br/>";
+    }
     
     //link to the previous page
     echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
@@ -33,10 +43,12 @@ if(isset($_POST['submit'])) {
     // if all the fields are filled (not empty) 
       
     //insert data to database   
-    $sql = "INSERT INTO purchase(account, amount) VALUES (:account,:amount)";
+    $sql = "INSERT INTO `transaction`(`type`, `account_id`, `client_numb`, `amount`) VALUES (:type,:account,:client,:amount)";
     $query = $pdo->prepare($sql);
         
+    $query->bindparam(':type', $type);
     $query->bindparam(':account', $account);
+    $query->bindparam(':client', $client);
     $query->bindparam(':amount', $amount);
     // $query->bindparam(':email', $email);
     if($query->execute()){
@@ -45,7 +57,11 @@ if(isset($_POST['submit'])) {
   $acc_chosen = $pdo->query($faq);
   $acc_chosen = $acc_chosen->fetchAll();
   // print_r($acc_chosen);die;
-$solde = $acc_chosen[0]['solde'] + $amount;
+  if($type == 'deposit'){
+    $solde = $acc_chosen[0]['solde'] + $amount;
+  }else{
+    $solde = $acc_chosen[0]['solde'] - $amount;
+  }
 
        $sql = "UPDATE `account` SET `solde`= :solde WHERE `acc_id`= :account;";
     $query = $pdo->prepare($sql);
@@ -53,7 +69,7 @@ $solde = $acc_chosen[0]['solde'] + $amount;
     $query->bindparam(':account', $account);
     $query->bindparam(':solde', $solde);
     if($query->execute()){
-      header('location: purchases.php');
+      header('location: transactions.php');
       }
     }
   }
@@ -99,9 +115,20 @@ $solde = $acc_chosen[0]['solde'] + $amount;
       <label>Account</label>
      <select class="form-control" name="account">
        <?php foreach ($accs as $acc): ?>
-        <option value = "<?=$acc['acc_id']?>" ><?= $acc['acc_name'] .'('.$acc['acc_number'].') ' ?></option>         
+        <option value = "<?=$acc['acc_id']?>" ><?= $acc['acc_name'] .'('.$acc['acc_number'].') '.'Solde:'.$acc['solde'] ?></option>         
        <?php endforeach ?>
      </select>
+    </div>
+    <div class="form-group">
+      <label>Type</label>
+      <select name="type" class="form-control">
+        <option value="deposit">Deposit</option>
+        <option value="cashout">Cashout</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Client Number</label>
+      <input type="tel" class="form-control" name="client">
     </div>
     <div class="form-group">
       <label>Amount</label>

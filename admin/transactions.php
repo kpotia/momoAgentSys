@@ -28,12 +28,12 @@ $result = $pdo->query("SELECT * FROM transaction");
         <div class="card-body d-sm-flex justify-content-between">
 
           <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="#" >Purchases</a>
+            <a href="#" >Transactions</a>
             <span>/</span>
             <span></span>
           </h4>   
 
-          <!-- <p><a href="addpurchase.php" class="btn">Add Transaction</a></p>       -->
+          <p><a href="addtransaction.php" class="btn">Add Transaction</a></p>      
         </div>
       </div>
       <!-- Heading -->
@@ -49,24 +49,18 @@ $result = $pdo->query("SELECT * FROM transaction");
                 <th>Account</th>
                 <th>Client Number</th>
                 <th>Amount</th>
-                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <?php   
                 while($row = $result->fetch(PDO::FETCH_ASSOC)) {    
                   echo "<tr>";
-                  echo "<td>".$row['time']."</td>";
+                  echo "<td>".$row['timetsamp']."</td>";
                   echo "<td>".$row['type']."</td>";
-                  echo "<td>".$row['account']."</td>";
+                  echo "<td>".$row['account_id']."</td>";
                   echo "<td>".$row['client_numb']."</td>";
                   echo "<td>".$row['amount']."</td>";
                  ?>
-                <td>
-                  <a href="" class="btn">edit</a>
-                  <a href="" class="btn">delete</a>
-                  <a href="" class="btn">view</a>
-                </td>
               <?php } ?>
             </tbody>
           </table>
