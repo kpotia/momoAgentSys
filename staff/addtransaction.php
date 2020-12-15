@@ -50,18 +50,18 @@ if(isset($_POST['submit'])) {
     $query->bindparam(':account', $account);
     $query->bindparam(':client', $client);
     $query->bindparam(':amount', $amount);
-    // $query->bindparam(':email', $email);
+    
     if($query->execute()){
         $faq = 'SELECT *  FROM account WHERE acc_id = '.$account;
 
-  $acc_chosen = $pdo->query($faq);
-  $acc_chosen = $acc_chosen->fetchAll();
-  // print_r($acc_chosen);die;
-  if($type == 'deposit'){
-    $solde = $acc_chosen[0]['solde'] + $amount;
-  }else{
-    $solde = $acc_chosen[0]['solde'] - $amount;
-  }
+        $acc_chosen = $pdo->query($faq);
+        $acc_chosen = $acc_chosen->fetchAll();
+        
+        if($type == 'deposit'){
+          $solde = $acc_chosen[0]['solde'] + $amount;
+        }else{
+          $solde = $acc_chosen[0]['solde'] - $amount;
+        }
 
        $sql = "UPDATE `account` SET `solde`= :solde WHERE `acc_id`= :account;";
     $query = $pdo->prepare($sql);
