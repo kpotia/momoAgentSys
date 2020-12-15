@@ -23,17 +23,25 @@ if(isset($_POST['submit'])) {
     // if all the fields are filled (not empty) 
       
     //insert data to database   
-    $sql = "INSERT INTO `issues`( `empid`, `issue_description`, `client_name`, `client_number` `status`)  VALUES (:empid, :issue_desc, :c_name, :c_number, :status);";
+    $sql = "INSERT INTO `issues`( `empid`, `issue_description`, `client_name`, `client_number`, `status`)  VALUES (:empid, :issue_desc, :c_name, :c_number, :status);";
     $query = $pdo->prepare($sql);
         
-    $query->bindparam(':empid', $id);
+    $query->bindparam(':empid', $empid);
     $query->bindparam(':status', $status);
     $query->bindparam(':c_name', $c_name);
     $query->bindparam(':c_number', $c_number);
     $query->bindparam(':issue_desc', $issue_desc);
     // $query->bindparam(':email', $email);
+
     if($query->execute()){
       header('location: issues.php');
+    }else{
+      var_dump($pdo->errorInfo());
+      echo '<br>';
+      echo 'INSERT INTO `issues`( `empid`, `issue_description`, `client_name`, `client_number`, `status`)  VALUES ("'.$empid.'", "'.$issue_desc.'", "'.$c_name.'", "'.$c_number.'", "'.$status.'");';
+      echo '<br>';
+
+      die('something went wrong');
     }
     
     
