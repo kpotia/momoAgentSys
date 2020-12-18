@@ -41,9 +41,107 @@
       <!-- Heading -->
 
       <!--Grid row-->
-      <div class="row card wow fadeIn">
+      <div class="row ">
 
+        <section class="col-md-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+            <a href="adduser.php" class="btn">Add User</a>
+            <a href="addaccount.php" class="btn">Add Account</a>
+            <a href="addpurchase.php" class="btn">Add Purchases</a>
+            <a href="issues.php" class="btn">View Issues</a>
+            <a href="logs.php" class="btn">View Logs</a>
+              
+            </div>
+          </div>
+        </section>
+        <!-- Transactions -->
+        <section class="col-md-5">
+          <div class="card">
+            <div class="card-header">
+              <h2>Transaction</h2>
+              <a href="transactions.php" class="btn">View All</a>
+            </div>
+            <div class="card-body">
+              <section class="row">
+              <div class="col-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h3>80</h3>
+                  </div>
+                  <div class="card-footer">Count</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h3>37</h3>
+                  </div>
+                  <div class="card-footer">Deposit</div>
+                </div>
+                </div>
+              <div class="col-4">
+
+                <div class="card">
+                  <div class="card-body">
+                    <h3>43</h3>
+                  </div>
+                  <div class="card-footer">Cashout</div>
+                </div>
+                </div>
+              </div>
+              </section>
+         
+      
         
+        <!-- Issues -->
+        <section class="col-md-7">
+          <div class="card">
+            <div class="card-header">
+              <h2>Issues</h2>
+              <a href="issues.php" class="btn">View All</a>
+            </div>
+            <div class="card-body">
+              <section class="row">
+              <div class="col-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h3>80</h3>
+                  </div>
+                  <div class="card-footer">Count</div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h3>37</h3>
+                  </div>
+                  <div class="card-footer">Pending</div>
+                </div>
+                </div>
+              <div class="col-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h3>43</h3>
+                  </div>
+                  <div class="card-footer">Processing</div>
+                </div>
+                </div>
+         
+              <div class="col-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h3>43</h3>
+                  </div>
+                  <div class="card-footer">Solved</div>
+                </div>
+                </div>
+              </div>
+              </section>
+            </div>
+               
+
+
       </div>
       <!--Grid row-->
 
