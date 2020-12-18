@@ -19,6 +19,10 @@
           <i class="fas fa-money-bill-alt mr-3"></i>Transactions</a>
         <a href="issues.php" class="list-group-item list-group-item-action waves-effect">
           <i class="fas fa-exclamation-circle mr-3"></i>Issues</a>
+        <a href="logs.php" class="list-group-item list-group-item-action waves-effect">
+        <i class="fas fa-newspaper mr-3"></i>Reports</a>
+        <a href="logs.php" class="list-group-item list-group-item-action waves-effect">
+        <i class="fas fa-list mr-3"></i>Logs</a>
         <a href="logout.php" class="list-group-item list-group-item-action waves-effect">
           <i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
        
