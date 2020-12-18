@@ -31,8 +31,7 @@ $result = $pdo->query("SELECT * FROM issues");
             <a href="#" >Issues</a>
             <span>/</span>
             <span></span>
-          </h4>   
-
+          </h4>
           <p><a href="addissue.php" class="btn">Add Issue</a></p>      
         </div>
       </div>
@@ -60,6 +59,7 @@ $result = $pdo->query("SELECT * FROM issues");
                   echo "<td>".$row['client_name']."</td>";
                   echo "<td>".$row['issue_description']."</td>";
                   echo "<td> <a href='issue.php?id=".$row['issueid']."' class='btn btn-primary'>View</a></td>";
+                  echo "<td> <a href='updateissue.php?id=".$row['issueid']."' class='btn btn-primary'>update status</a></td>";
                  ?>
               <?php } ?>
             </tbody>
