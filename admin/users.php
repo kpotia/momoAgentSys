@@ -48,7 +48,7 @@ $result = $pdo->query("SELECT * FROM users ORDER BY id DESC");
                 <th>email</th>
                 <th>username</th>
                 <th>Role</th>
-                <th>Action</th>
+                <!-- <th>Action</th> -->
               </tr>
             </thead>
             <tbody>
@@ -61,11 +61,11 @@ $result = $pdo->query("SELECT * FROM users ORDER BY id DESC");
                   echo "<td>".$row['role']."</td>";  
                  }
                 ?>
-                <td>
+              <!--   <td>
                   <a href="" class="btn">edit</a>
                   <a href="" class="btn">delete</a>
                   <a href="" class="btn">view</a>
-                </td>
+                </td> -->
             </tbody>
           </table>
         </div>
