@@ -59,11 +59,11 @@ $result = $pdo->query("SELECT * FROM account");
                   echo "<td>".$row['acc_number']."</td>";
                   echo "<td>".$row['acc_type']."</td>";
                   echo "<td>".$row['solde']."</td>";  
+                  echo "<td>".$row['acc_id']."</td>";  
                  ?>
                 <td>
-                  <a href="" class="btn">edit</a>
-                  <a href="" class="btn">delete</a>
-                  <a href="" class="btn">view</a>
+                  <a href="editaccount.php?id=<?=$row['acc_id']?>" class="btn">edit</a>
+                  <a href="viewaccount.php?id=<?=$row['acc_id']?>" class="btn">view</a>
                 </td>
               <?php } ?>
             </tbody>
