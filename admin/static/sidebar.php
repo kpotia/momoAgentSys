@@ -2,7 +2,7 @@
     <div class="sidebar-fixed position-fixed">
 
       <a class="logo-wrapper waves-effect">
-        <img src="https://mdbootstrap.com/img/logo/mdb-email.png" class="img-fluid" alt="">
+        <h2>MAS</h2>
       </a>
 
       <div class="list-group list-group-flush">

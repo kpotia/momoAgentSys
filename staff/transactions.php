@@ -55,7 +55,7 @@ $result = $pdo->query("SELECT * FROM transaction");
               <?php   
                 while($row = $result->fetch(PDO::FETCH_ASSOC)) {    
                   echo "<tr>";
-                  echo "<td>".$row['timetsamp']."</td>";
+                  echo "<td>".$row['timestamp']."</td>";
                   echo "<td>".$row['type']."</td>";
                   echo "<td>".$row['account_id']."</td>";
                   echo "<td>".$row['client_numb']."</td>";

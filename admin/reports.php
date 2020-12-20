@@ -28,7 +28,7 @@ $result = $pdo->query("SELECT * FROM logs INNER JOIN users ON users.id = logs.us
         <div class="card-body d-sm-flex justify-content-between">
 
           <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="#" >Logs</a>
+            <a href="#" >Issues</a>
             <span>/</span>
             <span></span>
           </h4>

@@ -1,7 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once 'static/head.php'; ?>
+<?php include_once 'static/head.php'; 
+
+// load DB
+require_once '../db.php';
+
+// fetch transaction count
+$trans_q = 'SELECT type, COUNT(*) as count FROM transaction GROUP BY type';
+$trans_sth = $pdo->query($trans_q);
+$trans_count = $trans_sth->fetchAll();
+// fetch transaction count
+$iss_q = 'SELECT status, COUNT(*) as count FROM issues GROUP BY status';
+$iss_sth = $pdo->query($iss_q);
+$iss_count = $iss_sth->fetchAll();
+  $trans_sum = 0;
+  $iss_sum = 0;
+  foreach ($trans_count as $trans) {
+    $trans_sum += $trans['count'];
+  }
+
+
+  foreach ($iss_count as $iss) {
+    $iss_sum += $iss['count'];
+  }
+  // die;
+
+?>
 
 <body class="grey lighten-3">
 
@@ -58,28 +83,23 @@
               <div class="col-4">
                 <div class="card">
                   <div class="card-body">
-                    <h3>80</h3>
+                    <h3><?=$trans_sum?></h3>
                   </div>
                   <div class="card-footer">Count</div>
                 </div>
               </div>
-              <div class="col-4">
+              <?php foreach ($trans_count as $trans): ?>
+                <div class="col-4">
                 <div class="card">
                   <div class="card-body">
-                    <h3>37</h3>
+                    <h3><?=$trans['count']?></h3>
                   </div>
-                  <div class="card-footer">Deposit</div>
+                  <div class="card-footer"><?=$trans['type']?></div>
                 </div>
-                </div>
-              <div class="col-4">
-
-                <div class="card">
-                  <div class="card-body">
-                    <h3>43</h3>
-                  </div>
-                  <div class="card-footer">Cashout</div>
-                </div>
-                </div>
+                </div>  
+              <?php endforeach ?>
+              
+       
               </div>
               </section>
          
@@ -97,36 +117,23 @@
               <div class="col-3">
                 <div class="card">
                   <div class="card-body">
-                    <h3>80</h3>
+                    <h3><?=$iss_sum?></h3>
                   </div>
                   <div class="card-footer">Count</div>
                 </div>
               </div>
-              <div class="col-3">
+              <?php foreach ($iss_count as $iss): ?>
+                <div class="col-3">
                 <div class="card">
                   <div class="card-body">
-                    <h3>37</h3>
+                    <h3><?=$iss['count']?></h3>
                   </div>
-                  <div class="card-footer">Pending</div>
+                  <div class="card-footer"><?=$iss['status']?></div>
                 </div>
                 </div>
-              <div class="col-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h3>43</h3>
-                  </div>
-                  <div class="card-footer">Processing</div>
-                </div>
-                </div>
-         
-              <div class="col-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h3>43</h3>
-                  </div>
-                  <div class="card-footer">Solved</div>
-                </div>
-                </div>
+              <?php endforeach ?>
+              
+              
               </div>
               </section>
             </div>
