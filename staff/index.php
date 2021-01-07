@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once 'static/head.php'; ?>
+<?php include_once 'static/head.php'; 
+
+include_once("../db.php");
+$result = $pdo->query("SELECT * FROM account");
+$accs = $result->fetchAll();
+?>
 
 <body class="grey lighten-3">
 
@@ -37,9 +42,70 @@
       <!-- Heading -->
 
       <!--Grid row-->
-      <div class="row card wow fadeIn">
+      <div class="row fadeIn">
+        <!-- main options  -->
+        <section class="card col-12 mb-4">
+          <nav class="card-body ">
+            <a href="addtransaction.php" class="btn">Add Transaction</a>           
+            <a href="addissue.php" class="btn">Add issue</a>           
+            <a href="issues.php" class="btn">view issues </a>           
+            <a href="accounts.php" class="btn">Accounts </a>           
+          </nav>
+        </section>
 
-        
+        <section class="col-md-6 " >
+          <div class="card">
+          <div class="card-header">Accounts Soldes</div>
+          <div>
+            <table class="table">
+              <thead class="table-dark">
+                <tr >
+                  <th>Account Name</th>
+                  <th>Account Number</th>
+                  <th>Account Solde</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($accs as $acc ): ?>
+                  
+                <tr>
+                  <td><?=$acc['acc_name']?></td>
+                  <td><?=$acc['acc_number']?></td>
+                  <td><?=$acc['solde']?></td>
+                </tr>
+                <?php endforeach ?>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </section>
+
+        <section class="col-md-6" >
+          <div class="row">
+            <section class="col-12 card">
+              <header class="card-header">
+                <h3>Deposit</h3>
+              </header>
+              <div class="card-body row">
+                <div class="card col p-0">
+                  <div class="card-body">
+                    <h3>300</h3>
+                  </div>
+                  <div class="card-footer">Count</div>
+                </div>
+
+                <div class="card col p-0">
+                  <div class="card-body">
+                    <h3>3090 GHS</h3>
+                  </div>
+                  <div class="card-footer">Total</div>
+                </div>
+
+
+              </div>
+            </section>
+          </div>
+        </section>
       </div>
       <!--Grid row-->
 
