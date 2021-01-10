@@ -6,6 +6,14 @@
 include_once("../db.php");
 $result = $pdo->query("SELECT * FROM account");
 $accs = $result->fetchAll();
+
+// fetch transaction count
+$trans_q = 'SELECT type, COUNT(type) as count, SUM(amount) as amount FROM transaction GROUP BY type';
+$trans_sth = $pdo->query($trans_q);
+$trans_count = $trans_sth->fetchAll();
+
+
+// var_dump( $trans_count); die;
 ?>
 
 <body class="grey lighten-3">
@@ -81,30 +89,36 @@ $accs = $result->fetchAll();
         </section>
 
         <section class="col-md-6" >
-          <div class="row">
+
+          <?php foreach ($trans_count as $trans_type): ?>
+
+  <div class="row mb-4">
             <section class="col-12 card">
               <header class="card-header">
-                <h3>Deposit</h3>
+                <h3><?=$trans_type['type'] ?></h3>
               </header>
               <div class="card-body row">
                 <div class="card col p-0">
                   <div class="card-body">
-                    <h3>300</h3>
+                    <h3><?=$trans_type['count']?></h3>
                   </div>
                   <div class="card-footer">Count</div>
                 </div>
 
                 <div class="card col p-0">
                   <div class="card-body">
-                    <h3>3090 GHS</h3>
+                    <h3><?=$trans_type['amount']?> GHS</h3>
                   </div>
                   <div class="card-footer">Total</div>
                 </div>
 
 
               </div>
-            </section>
+
+
+              
           </div>
+<?php endforeach ?>
         </section>
       </div>
       <!--Grid row-->
