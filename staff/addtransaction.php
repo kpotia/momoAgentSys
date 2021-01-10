@@ -97,7 +97,7 @@ if(isset($_POST['submit'])) {
         <div class="card-body d-sm-flex justify-content-between">
 
           <h4 class="mb-2 mb-sm-0 pt-1">
-            Add Purchase
+            Add Transaction
           </h4>   
     
       </div>
