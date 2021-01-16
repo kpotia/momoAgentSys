@@ -92,7 +92,7 @@ $trans_count = $trans_sth->fetchAll();
 
           <?php foreach ($trans_count as $trans_type): ?>
 
-  <div class="row mb-4">
+        <div class="row mb-4">
             <section class="col-12 card">
               <header class="card-header">
                 <h3><?=$trans_type['type'] ?></h3>

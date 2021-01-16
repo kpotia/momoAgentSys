@@ -7,7 +7,7 @@
 require_once '../db.php';
 
 // fetch transaction count
-$trans_q = 'SELECT type, COUNT(*) as count FROM transaction GROUP BY type';
+$trans_q = 'SELECT type, COUNT(type) as count,sum(amount) as amount  FROM transaction GROUP BY type';
 $trans_sth = $pdo->query($trans_q);
 $trans_count = $trans_sth->fetchAll();
 // fetch transaction count
