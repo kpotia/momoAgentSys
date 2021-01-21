@@ -6,7 +6,13 @@ include_once("../db.php");
 if (isset($_GET['id'])) {
 $result = $pdo->query("SELECT * FROM issues WHERE issueid = ".$_GET['id']);
       $issue = $result->fetch(PDO::FETCH_ASSOC);
+}
 
+if (isset($_POST['update'])) {
+  var_dump($_POST);
+
+  #update status 
+  $sql = 'UPDATE `issues` SET `comment` = 'tatstsg', `status` = 'working' WHERE `issues`.`issueid` = ';
 }
 ?>
 
