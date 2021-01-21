@@ -33,7 +33,7 @@ $result = $pdo->query("SELECT * FROM transaction");
             <span></span>
           </h4>   
 
-          <p><a href="addtransaction.php" class="btn">Add Transaction</a></p>      
+          <p><a href="addtransaction.php" class="btn btn-primary">Add Transaction</a></p>      
         </div>
       </div>
       <!-- Heading -->
@@ -49,6 +49,7 @@ $result = $pdo->query("SELECT * FROM transaction");
                 <th>Account</th>
                 <th>Client Number</th>
                 <th>Amount</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -60,6 +61,7 @@ $result = $pdo->query("SELECT * FROM transaction");
                   echo "<td>".$row['account_id']."</td>";
                   echo "<td>".$row['client_numb']."</td>";
                   echo "<td>".$row['amount']."</td>";
+                  echo "<td> <a href='transaction.php?id=".$row['tid']."' class='btn btn-primary'>View</a></td>";
                  ?>
               <?php } ?>
             </tbody>
