@@ -52,6 +52,7 @@ if(isset($_POST['submit'])) {
     $query->bindparam(':amount', $amount);
     
     if($query->execute()){
+      $tid = $pdo->lastInsertId();
         $faq = 'SELECT *  FROM account WHERE acc_id = '.$account;
 
         $acc_chosen = $pdo->query($faq);
@@ -69,7 +70,7 @@ if(isset($_POST['submit'])) {
     $query->bindparam(':account', $account);
     $query->bindparam(':solde', $solde);
     if($query->execute()){
-      header('location: transactions.php');
+      header('location: transaction.php?id='.$tid);
       }
     }
   }

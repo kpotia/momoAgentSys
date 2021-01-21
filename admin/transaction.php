@@ -3,7 +3,11 @@
 
 <?php include_once 'static/head.php'; 
 include_once("../db.php");
-$result = $pdo->query("SELECT * FROM transaction");
+if (isset($_GET['id'])) {
+$result = $pdo->query("SELECT * FROM issues WHERE issueid = ".$_GET['id']);
+      $issue = $result->fetch(PDO::FETCH_ASSOC);
+
+}
 ?>
 
 <body class="grey lighten-3">
@@ -28,44 +32,26 @@ $result = $pdo->query("SELECT * FROM transaction");
         <div class="card-body d-sm-flex justify-content-between">
 
           <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="#" >Transactions</a>
+            <a href="#" >Issues</a>
             <span>/</span>
             <span></span>
-          </h4>   
-
-          <p><a href="addtransaction.php" class="btn btn-primary">Add Transaction</a></p>      
+          </h4> 
         </div>
       </div>
       <!-- Heading -->
 
       <!--Grid row-->
       <div class="row card wow fadeIn">
-        <div class="col">
-          <table class="table table-hover">
-            <thead class="table-black">
-              <tr>
-                <th>Date time</th>
-                <th>Type</th>
-                <th>Account</th>
-                <th>Client Number</th>
-                <th>Amount</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php   
-                while($row = $result->fetch(PDO::FETCH_ASSOC)) {    
-                  echo "<tr>";
-                  echo "<td>".$row['timestamp']."</td>";
-                  echo "<td>".$row['type']."</td>";
-                  echo "<td>".$row['account_id']."</td>";
-                  echo "<td>".$row['client_numb']."</td>";
-                  echo "<td>".$row['amount']."</td>";
-                  echo "<td> <a href='transaction.php?id=".$row['tid']."' class='btn btn-primary'>View</a></td>";
-                 ?>
-              <?php } ?>
-            </tbody>
-          </table>
+        <div class="col-md-6">
+          
+          <ul style="list-style: none;">
+            <li>Date: <?= $issue['timetsamp']?> </li>
+            <li>Client Name: <?= $issue['client_name']?></li>
+            <li>client Number: <?= $issue['client_number']?></li>
+            <li>Status: <span class="badge badge-primary"><?= $issue['status']?></span></li>
+            <li>Issue Description: <?= $issue['issue_description']?></li>
+            <li>Issue Description: <?= $issue['comment']?></li>
+          </ul>
         </div>
         
       </div>
