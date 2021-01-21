@@ -48,8 +48,9 @@ $result = $pdo->query("SELECT * FROM issues WHERE issueid = ".$_GET['id']);
             <li>Date: <?= $issue['timetsamp']?> </li>
             <li>Client Name: <?= $issue['client_name']?></li>
             <li>client Number: <?= $issue['client_number']?></li>
-            <li>Status: <?= $issue['status']?></li>
+            <li>Status: <span class="badge badge-primary"><?= $issue['status']?></span></li>
             <li>Issue Description: <?= $issue['issue_description']?></li>
+            <li>Issue Description: <?= $issue['comment']?></li>
           </ul>
         </div>
         
