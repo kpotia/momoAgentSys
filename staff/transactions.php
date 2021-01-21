@@ -33,7 +33,7 @@ $result = $pdo->query("SELECT * FROM transaction");
             <span></span>
           </h4>   
 
-          <p><a href="addtransaction.php" class="btn">Add Transaction</a></p>      
+          <p><a href="addtransaction.php" class="btn btn-primary">Add Transaction</a></p>      
         </div>
       </div>
       <!-- Heading -->

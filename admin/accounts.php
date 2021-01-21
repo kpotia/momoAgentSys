@@ -33,7 +33,7 @@ $result = $pdo->query("SELECT * FROM account");
             <span></span>
           </h4>   
 
-          <p><a href="addaccount.php" class="btn">Add Account</a></p>      
+          <p><a href="addaccount.php" class="btn btn-grey">Add Account</a></p>      
         </div>
       </div>
       <!-- Heading -->

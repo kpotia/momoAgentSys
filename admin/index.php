@@ -62,11 +62,11 @@ $iss_count = $iss_sth->fetchAll();
         <section class="col-md-12 mb-4">
           <div class="card">
             <div class="card-body">
-            <a href="adduser.php" class="btn">Add User</a>
-            <a href="addaccount.php" class="btn">Add Account</a>
-            <a href="addpurchase.php" class="btn">Add Purchases</a>
-            <a href="issues.php" class="btn">View Issues</a>
-            <a href="logs.php" class="btn">View Logs</a>
+            <a href="adduser.php" class="btn btn-grey">Add User</a>
+            <a href="addaccount.php" class="btn btn-primary">Add Account</a>
+            <a href="addpurchase.php" class="btn btn-grey">Add Purchases</a>
+            <a href="issues.php" class="btn btn-primary">View Issues</a>
+            <a href="logs.php" class="btn btn-grey">View Logs</a>
               
             </div>
           </div>
@@ -76,7 +76,7 @@ $iss_count = $iss_sth->fetchAll();
           <div class="card">
             <div class="card-header">
               <h2>Transaction</h2>
-              <a href="transactions.php" class="btn">View All</a>
+              <a href="transactions.php" class="btn btn-grey">View All</a>
             </div>
             <div class="card-body">
               <section class="row">
@@ -110,7 +110,7 @@ $iss_count = $iss_sth->fetchAll();
           <div class="card">
             <div class="card-header">
               <h2>Issues</h2>
-              <a href="issues.php" class="btn">View All</a>
+              <a href="issues.php" class="btn btn-grey">View All</a>
             </div>
             <div class="card-body">
               <section class="row">
