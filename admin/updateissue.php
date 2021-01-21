@@ -10,9 +10,19 @@ $result = $pdo->query("SELECT * FROM issues WHERE issueid = ".$_GET['id']);
 
 if (isset($_POST['update'])) {
   var_dump($_POST);
+  extract($_POST);
 
   #update status 
-  $sql = 'UPDATE `issues` SET `comment` = 'tatstsg', `status` = 'working' WHERE `issues`.`issueid` = ';
+  $sql = 'UPDATE `issues` SET `comment` = :comment, `status` = :status WHERE `issues`.`issueid` = '.$_GET['id'];
+  $query = $pdo->prepare($sql);
+        
+    $query->bindparam(':comment', $comment);
+    $query->bindparam(':status', $status);
+    if($query->execute()){
+      header('location: issue.php?id='.$_GET['id']);
+    }
+
+
 }
 ?>
 
@@ -68,9 +78,12 @@ if (isset($_POST['update'])) {
                 <option>processing</option>
                 <option>solved</option>
               </select>
-              
             </div>
-    <button name="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+              <label for="comment">Comments</label>
+              <textarea name="comment" id="comment" class="form-control" cols="30" rows="3"><?= $issue['comment']?></textarea>
+            </div>
+    <button name="update" value="1" class="btn btn-primary">Submit</button>
 
           </form>
           
