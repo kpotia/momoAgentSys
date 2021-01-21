@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2020 at 03:50 PM
+-- Generation Time: Jan 21, 2021 at 04:40 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -40,8 +40,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`acc_id`, `acc_type`, `solde`, `acc_name`, `acc_number`) VALUES
-(9009, 'MTN', '9450.00', 'MTN111', '054454545'),
-(9834, 'MTN', '20000.00', 'MTN@1', '0543631164');
+(9009, 'MTN', '9900.00', 'MTN111', '054454545'),
+(9834, 'MTN', '19400.00', 'MTN@1', '0543631164');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE `issues` (
 --
 
 INSERT INTO `issues` (`issueid`, `empid`, `issue_description`, `client_name`, `client_number`, `comment`, `status`, `timetsamp`) VALUES
-(1, 6, 'tgrhngfff', 'Benjamin Anderson', '0249089090', NULL, 'pending', '2020-12-15 15:14:12');
+(1, 6, 'tgrhngfff', 'Benjamin Anderson', '0249089090', 'test', 'solved', '2020-12-15 15:14:12');
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,11 @@ INSERT INTO `logs` (`timetsamp`, `id`, `userid`, `details`) VALUES
 ('2020-12-20 05:12:18', 10, 2, 'admin@gmail.com: login'),
 ('2020-12-20 05:12:19', 11, 2, 'admin@gmail.com: login'),
 ('2020-12-20 14:00:03', 12, 2, 'admin@gmail.com: logout'),
-('2020-12-20 14:00:57', 13, 6, 'staff_test: login');
+('2020-12-20 14:00:57', 13, 6, 'staff_test: login'),
+('2021-01-07 06:28:20', 14, 2, 'admin@gmail.com: login'),
+('2021-01-07 06:48:06', 15, 2, 'admin@gmail.com: logout'),
+('2021-01-07 06:49:07', 16, 6, 'staff_test: login'),
+('2021-01-21 09:10:21', 17, 6, 'staff_test: login');
 
 -- --------------------------------------------------------
 
@@ -131,8 +135,9 @@ INSERT INTO `purchase` (`timestamp`, `type`, `account`, `amount`) VALUES
 --
 
 CREATE TABLE `transaction` (
+  `tid` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
-  `type` enum('withdrawal','deposit') NOT NULL,
+  `type` enum('cashout','deposit') NOT NULL,
   `account_id` int(10) NOT NULL,
   `client_numb` varchar(11) NOT NULL,
   `amount` decimal(10,2) NOT NULL
@@ -142,8 +147,9 @@ CREATE TABLE `transaction` (
 -- Dumping data for table `transaction`
 --
 
-INSERT INTO `transaction` (`timestamp`, `type`, `account_id`, `client_numb`, `amount`) VALUES
-('2020-12-15 13:03:16', 'deposit', 9009, '054909088', '50.00');
+INSERT INTO `transaction` (`tid`, `timestamp`, `type`, `account_id`, `client_numb`, `amount`) VALUES
+(1, '2021-01-21 14:52:01', 'deposit', 9009, '900309090', '450.00'),
+(2, '2021-01-21 14:52:29', 'deposit', 9009, '900309090', '450.00');
 
 -- --------------------------------------------------------
 
@@ -192,6 +198,12 @@ ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`tid`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -219,7 +231,13 @@ ALTER TABLE `issues`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
